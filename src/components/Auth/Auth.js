@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 
-const Auth = () => {
+const Auth = ({setIdToken}) => {
     const[SIGNUP,signUpHandler]=useState(false);
     const Email=useRef();
     const Password=useRef();
@@ -48,6 +48,8 @@ const Auth = () => {
         }
         const data=await response.json();
         console.log(data);
+        setIdToken(data.idToken);
+        // localStorage.setItem('idToken',data.idToken)
         }
 
         signUpHandler();
@@ -72,7 +74,7 @@ const Auth = () => {
                         <input ref={confirmPassword} type="password" className="form-control" id="confirmPasword" placeholder="Confirm Password" required/>
                     </div>
                 }
-                
+
 
                 <div className="form-group m-4">
                      <button type="submit" style={{width:'100%'}} className="btn btn-primary btn-block rounded-4 ">{SIGNUP?'Login':'SignUP'}</button>
