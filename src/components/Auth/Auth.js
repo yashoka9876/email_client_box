@@ -57,7 +57,7 @@ const Auth = () => {
     <div className="container">
     <div className="row justify-content-center">
         <div className="col-md-4 border border-1 rounded ">
-            <h3 className='text-center '>{SIGNUP?'Login':'SignUP'}</h3>
+            <h3 className='text-center '>{SIGNUP?'Sign_IN':'Sign_Up'}</h3>
         <form onSubmit={submitHandler} >
                 <div className="form-group m-4 ">
                     <input ref={Email} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required/>
@@ -72,10 +72,11 @@ const Auth = () => {
                         <input ref={confirmPassword} type="password" className="form-control" id="confirmPasword" placeholder="Confirm Password" required/>
                     </div>
                 }
+                
 
                 <div className="form-group m-4">
                      <button type="submit" style={{width:'100%'}} className="btn btn-primary btn-block rounded-4 ">{SIGNUP?'Login':'SignUP'}</button>
-                     <button type='button' onClick={modeHandler} style={{width:'100%'}} className="btn btn-primary btn-block rounded-4 mt-2"><span>Go To </span>{SIGNUP?'SignUP':'Login'}</button>
+                     <button type='button' onClick={modeHandler} style={{width:'100%'}} className="btn btn-primary btn-block rounded-4 mt-2">{SIGNUP?'Go To SignUP':'Go To Login'}</button>
                 </div>
 
             </form>
