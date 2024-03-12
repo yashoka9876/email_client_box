@@ -1,0 +1,18 @@
+.emailType{
+    display: flex;
+   align-items: center;
+    border-radius: 5px;
+    border-bottom: 4px solid rgb(41, 39, 39);
+}
+
+.emailType__options{
+    display: flex;
+    min-width: 230px;
+    align-items: center;
+    padding: 2px;
+    
+}
+
+.emailType__options p{
+    margin: auto 0px;
+}

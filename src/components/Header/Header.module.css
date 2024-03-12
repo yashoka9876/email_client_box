@@ -1,0 +1,49 @@
+.header{
+    display: grid;
+    grid-template-columns: 250px auto 200px;
+    align-items: center;
+    border-bottom: 1px solid rgb(185, 159, 159);
+    padding: 3px;
+}
+
+.header__left{
+    display: flex;
+}
+
+
+.header__medium{
+    display: flex;
+    flex: 0.7;
+}
+.search__mail{
+    border-radius: 5px;
+    display: flex;
+    flex:0.7;
+    border-bottom: 1px solid seashell;
+}
+
+.search__mail input{
+    border: 0;
+    background-color: transparent;
+    outline: 0;
+    flex: 1;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+.header__right{
+    display: flex;
+    align-items: center;
+}
+
+.header__right .avatar{
+    width: 30px;
+    height: 30px;
+}
+
+.header__left img {
+    border-radius: 5px;
+    width: 120px;
+}
+
+
+ 

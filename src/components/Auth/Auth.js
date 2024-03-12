@@ -1,10 +1,13 @@
 import React, { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { signIn } from '../../store/userSlice';
 
-const Auth = ({setIdToken}) => {
+const Auth = () => {
     const[SIGNUP,signUpHandler]=useState(false);
     const Email=useRef();
     const Password=useRef();
     const confirmPassword=useRef();
+    const dispatch=useDispatch();
 
     const modeHandler=()=>{
         signUpHandler((value)=>{
@@ -48,15 +51,22 @@ const Auth = ({setIdToken}) => {
         }
         const data=await response.json();
         console.log(data);
-        setIdToken(data.idToken);
-        // localStorage.setItem('idToken',data.idToken)
+        // setIdToken(data.idToken);
+        dispatch(signIn({
+            email:data.email,
+            idToken:data.idToken
+        }));
+         localStorage.setItem( 'auth',JSON.stringify({
+            email:data.email,
+            idToken:data.idToken
+        }))
         }
 
         signUpHandler();
     }
   return <>
  
-    <div className="container">
+    <div className="container mt-5">
     <div className="row justify-content-center">
         <div className="col-md-4 border border-1 rounded ">
             <h3 className='text-center '>{SIGNUP?'Sign_IN':'Sign_Up'}</h3>

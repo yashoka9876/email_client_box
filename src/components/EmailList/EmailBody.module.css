@@ -1,0 +1,42 @@
+.emailbody{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(236, 226, 226);
+    padding: 4px;
+}
+
+.emailbody__left{
+display: flex;
+align-items: center;
+min-width: 300px;
+flex: 20%;
+}
+.emailbody__left svg{
+    margin-right: 5px;
+}
+.emailbody__middle{
+    display: flex;
+    align-items: center;
+    flex: 70%;
+    max-width: 700px;
+    }
+
+
+
+.emailbody__right{
+        display: flex;
+        align-items: center;  
+        flex: 10%;
+        }
+
+.emailbody__middle .emailbody__middle__mgs p{
+    margin: auto 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 600px;
+    }
+
+.emailbody__right p{
+    margin: auto 0px;
+}
