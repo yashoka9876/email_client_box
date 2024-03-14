@@ -1,8 +1,8 @@
 // counterSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-  value:null
+export const initialState = {
+  value:{email:'yashoka@gmail.com'}
 };
 
 const userSlice = createSlice({
@@ -10,11 +10,11 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     signIn: (state,actions) => {
-      window.alert('signIn brother')
+      
       state.value=actions.payload;
     },
     signUp: (state) => {
-      window.alert('signout brother')
+      
         state.value=null;
     },
   },

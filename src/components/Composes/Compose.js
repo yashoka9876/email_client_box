@@ -21,9 +21,9 @@ import { Link } from 'react-router-dom';
 
 const Compose = () => {
     const dispatch=useDispatch();
-    const to=useRef();
-    const subject=useRef();
-    const message=useRef();
+    const to=useRef('');
+    const subject=useRef('');
+    const message=useRef('');
     const currentTime = new Date();
     const hours = currentTime.getHours();
     const minutes = currentTime.getMinutes();
@@ -36,7 +36,6 @@ const Compose = () => {
 
     function formSubmit(e){
         e.preventDefault();
-        let Recipents=to.current.value.replace(/[@.]/g, "");
         
         let obj={
             to:to.current.value,
@@ -47,7 +46,7 @@ const Compose = () => {
         }
 
         async function sendMail(){
-            console.log(Recipents)
+           
     
             const response=await fetch(`https://emailboxclient-default-rtdb.firebaseio.com/emails.json`,{
                  method:'POST',
@@ -59,7 +58,8 @@ const Compose = () => {
                if(!response.ok){
                  throw new Error('this one is at antoher level');
                }
-               console.log(await response.json());
+               const data=await response.json();
+               console.log(data);
            }
 
            
@@ -88,11 +88,12 @@ const Compose = () => {
             <div className={classes.compose__header__right}>
                 <RemoveIcon/>
                 <HeightIcon className='HaiBro'/>
-                <Link to='/'><CloseIcon/></Link>
+                <CloseIcon/>
             </div>
         </div>
 
     <form onSubmit={formSubmit}>
+
         <div className={classes.compose__body}>
             <div  className={classes.compose__bodyForm}>
                 <input ref={to} type='email' placeholder='Recipents'/>
@@ -106,7 +107,7 @@ const Compose = () => {
         <div className={classes.compose__footer}>
             <div className={classes.compose__footerLeft}>
                 <button type='submit' className='btn btn-primary'>
-                    Send |<ArrowDownwardIcon/>
+                    <span>Send</span> |<ArrowDownwardIcon/>
                 </button>
                 <IconButton>
                     <FormatColorTextIcon/>

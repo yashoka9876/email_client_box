@@ -16,13 +16,15 @@ const router=createBrowserRouter([
   children:[
     {path:'/',element:<EmailList/>},
     {path:'/sent',element:<EmailBodyIndex/>},
-    {path:'compose',element:<Compose/>}
+    {path:'/compose',element:<Compose/>,
+  }
   ]
 },
 {
   path:'/auth',
   element:<Auth/>
-}
+},
+{path:'/compose',element:<Compose/> }
 
 ])
 
