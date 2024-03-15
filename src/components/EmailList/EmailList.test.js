@@ -1,9 +1,16 @@
-import React from 'react';
-import { screen } from '@testing-library/react';
-import EmailList from './EmailList';
-import { renderWithProviders } from '../../utils/utils-for-tests';
+import { screen } from "@testing-library/react"
+import { renderWithProviders } from "../../utils/utils-for-tests"
+import EmailList from "./EmailList"
+import React from "react";
 
-test('renders EmailList component', () => {
-  renderWithProviders(<EmailList />);
-});
 
+test('initial state of BackanedData is an empty array', async() => {
+    renderWithProviders(<EmailList />);
+
+    const emailListElement = await screen.findAllByRole('listitem');
+
+    expect(emailListElement).not.toHaveLength(0);
+   
+
+
+  });

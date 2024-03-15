@@ -30,7 +30,7 @@ const EmailList = () => {
     },[])
 
   return (
-    <div className='emailist'>
+    <ul className='emailist'>
         {
             BackanedData.map(({key,value})=>{ 
                 if(value.from === 'sameer@gmail.com') {
@@ -39,7 +39,7 @@ const EmailList = () => {
                 return null;
             })
         }
-    </div>
+    </ul>
   )
 }
 

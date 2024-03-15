@@ -30,7 +30,7 @@ const Compose = () => {
     const fromData=useSelector(state=>state.user.value)
 
     
-    console.log(fromData)
+    //console.log(fromData)
 
     const currTime=`${hours}:${minutes}`
 
