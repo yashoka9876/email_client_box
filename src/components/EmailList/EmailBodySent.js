@@ -4,6 +4,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import LabelIcon from '@mui/icons-material/Label';
 import classes from './EmailBody.module.css'
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 const EmailBodyIndex = ({name,subject,message,time}) => {
     const [BackanedData,setBackendData]=useState([]);
    const From=useSelector(state=>state.user.value);
@@ -34,23 +35,25 @@ const EmailBodyIndex = ({name,subject,message,time}) => {
     <div className='emailist'>
         {
             BackanedData.map(({key,value})=>{ 
-                if(value.to === 'sameer@gmail.com') {
-                    return <div className={classes.emailbody}>
-                    <div className={classes.emailbody__left}>
-                        <CheckBoxOutlineBlankIcon/>
-                        <StarBorderIcon/>
-                        <LabelIcon/>
-                        <h6>{value.from.email}</h6>
-                    </div>
-                    <div className={classes.emailbody__middle}>
-                        <div className={classes.emailbody__middle__mgs}>
-                            <p><b>{value.subject}</b>{` - ${value.message}`}</p>
+                if(value.from === 'yashoka@gmail.com') {
+                    return <Link to={value.subject}>
+                        <div className={classes.emailbody}>
+                        <div className={classes.emailbody__left}>
+                            <CheckBoxOutlineBlankIcon/>
+                            <StarBorderIcon/>
+                            <LabelIcon/>
+                            <h6>{value.from.email}</h6>
+                        </div>
+                        <div className={classes.emailbody__middle}>
+                            <div className={classes.emailbody__middle__mgs}>
+                                <p><b>{value.subject}</b>{` - ${value.message}`}</p>
+                            </div>
+                        </div>
+                        <div className={classes.emailbody__right}>
+                            <p>{value.time}</p>
                         </div>
                     </div>
-                    <div className={classes.emailbody__right}>
-                        <p>{value.time}</p>
-                    </div>
-                </div>
+                    </Link>
                 }
                 return null;
             })

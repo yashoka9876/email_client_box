@@ -14,8 +14,8 @@ const userSlice = createSlice({
       state.value=actions.payload;
     },
     signUp: (state) => {
-      
         state.value=null;
+        localStorage.removeItem('auth');
     },
   },
 });

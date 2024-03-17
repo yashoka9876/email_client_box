@@ -10,6 +10,7 @@ import AppsIcon from '@mui/icons-material/Apps';
 import { Avatar } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../../store/userSlice';
+import { toggleHandler } from '../../store/mailSlice';
 
 
 const Header = () => {
@@ -38,7 +39,6 @@ const Header = () => {
          <HelpOutlineIcon/>
       </IconButton>
       <IconButton
-      onClick={()=>dispatch(signUp())}
       >
          <SettingsIcon
          />
@@ -47,9 +47,11 @@ const Header = () => {
          <AppsIcon/>
       </IconButton>
       <Avatar
+      onClick={()=>dispatch(toggleHandler())}
        className={classes.avatar}
       src='https://upload.wikimedia.org/wikipedia/commons/d/d2/Ranbir_Kapoor_promoting_Brahmastra.jpg'></Avatar>
-    </div>
+
+          </div>
   </div>
 }
 

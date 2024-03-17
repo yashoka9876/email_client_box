@@ -24,11 +24,15 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 
 import KeyboardIcon from '@mui/icons-material/Keyboard';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openSendMessage } from '../../store/mailSlice';
 import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
+    const unread=useSelector(state=>state.mail.unread);
+    
+
+
     const dispatch=useDispatch();
   return (
     <div className={classes.sidebar}>
@@ -36,17 +40,16 @@ const Sidebar = () => {
                <div className={classes.sidebar__btn}>
                <Button
                  startIcon={<AddIcon />}
+                 onClick={()=>dispatch(openSendMessage())}
             >
-                <Link to='/compose'>
-                    COMPOSE
-                </Link>
+               Compose
             </Button>
                </div>
             <Link to='/'>
                 <SidebarOptions
                 Icon={InboxIcon}
                 title='Inbox'
-                number='224'
+                number={unread}
                 />
             </Link>
 

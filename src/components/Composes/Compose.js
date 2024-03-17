@@ -42,7 +42,8 @@ const Compose = () => {
             subject:subject.current.value,
             message:message.current.value,
             date:currTime,
-            from:fromData.email
+            from:fromData.email,
+            read:false
         }
 
         async function sendMail(){
@@ -88,7 +89,7 @@ const Compose = () => {
             <div className={classes.compose__header__right}>
                 <RemoveIcon/>
                 <HeightIcon className='HaiBro'/>
-                <CloseIcon/>
+                <CloseIcon onClick={()=>dispatch(closeSendMessage())}/>
             </div>
         </div>
 

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { signIn } from '../../store/userSlice';
+import { redirect, useNavigate } from 'react-router-dom';
 
 const Auth = () => {
     const[SIGNUP,signUpHandler]=useState(false);
@@ -8,6 +9,7 @@ const Auth = () => {
     const Password=useRef();
     const confirmPassword=useRef();
     const dispatch=useDispatch();
+    const navigate=useNavigate();
 
     const modeHandler=()=>{
         signUpHandler((value)=>{
@@ -56,13 +58,15 @@ const Auth = () => {
             email:data.email,
             idToken:data.idToken
         }));
-         localStorage.setItem( 'auth',JSON.stringify({
+        localStorage.setItem( 'auth',JSON.stringify({
             email:data.email,
             idToken:data.idToken
         }))
+        navigate('/')
         }
-
         signUpHandler();
+        console.log('Hi this one is okkkkkkk')
+        console.log('kyo hi this one')
     }
   return <>
  

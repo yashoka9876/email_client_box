@@ -3,12 +3,15 @@ import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import LabelIcon from '@mui/icons-material/Label';
 import classes from './EmailBody.module.css'
-const EmailBody = ({name,subject,message,time}) => {
+import { Link } from 'react-router-dom';
+const EmailBody = ({name,subject,message,time,id,read}) => {
     
   return (
+      <Link to={id} style={{ textDecoration: 'none' }}>
     <li className={classes.emailbody}>
-        <div className={classes.emailbody__left}  name='emailbody__left' data-testid="emailbody__left">
+       <div className={classes.emailbody__left}  name='emailbody__left' data-testid="emailbody__left">
             <CheckBoxOutlineBlankIcon/>
+            {read && <div style={{ marginRight: '8px', color: 'blue' }}>•</div>}
             <StarBorderIcon/>
             <LabelIcon/>
             <h6>{name}</h6>
@@ -22,6 +25,7 @@ const EmailBody = ({name,subject,message,time}) => {
             <p>{time}</p>
         </div>
     </li>
+       </Link>
   )
 }
 

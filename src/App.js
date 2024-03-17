@@ -6,32 +6,29 @@ import RootLayout from "./pages/RootLayout";
 import EmailList from "./components/EmailList/EmailList";
 import Auth from "./components/Auth/Auth";
 import Compose from "./components/Composes/Compose";
-import { useSelector } from "react-redux";
+import { rootReturn } from "./utils/loaderFunction/authfun";
+import EmailDetail from "./components/EmailList/EmailDetail";
 
-
-
-const router=createBrowserRouter([
-  {path:'/',
-  element:<RootLayout/>,
-  children:[
-    {path:'/',element:<EmailList/>},
-    {path:'/sent',element:<EmailBodyIndex/>},
-    {path:'/compose',element:<Compose/>,
-  }
-  ]
-},
-{
-  path:'/auth',
-  element:<Auth/>
-},
-{path:'/compose',element:<Compose/> }
-
-])
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { path: "/", element: <EmailList />, loader: rootReturn },
+      { path: "/sent", element: <EmailBodyIndex />, loader: rootReturn },
+      {path:':Id',element:<EmailDetail/>},
+      {path:'sent/:Id',element:<EmailDetail/>}
+    ],
+  },
+  {
+    path: "/auth",
+    element: <Auth />,
+  },
+  // { path: "/compose", element: <Compose /> },
+]);
 
 function App() {
-
-  return <RouterProvider router={router}/>
-
+  return <RouterProvider router={router} />;
 }
 
 export default App;
