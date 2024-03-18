@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import './EmailList.module.css'
 import EmailBody from './EmailBody'
 import { useDispatch, useSelector } from 'react-redux'
-import { unreadHandler } from '../../store/mailSlice'
+import { unreadHandler } from '../../store/mailSlice';
+
 
 const EmailList = () => {
   let Unread=0;
@@ -41,7 +42,7 @@ const EmailList = () => {
               }
 
                 if(value.from === 'sameer@gmail.com') {
-                    return <EmailBody key={key} id={key} name={value.to} subject={value.subject} message={value.message} time={value.date} read={!value.read}/>
+                    return <><EmailBody key={key} id={key} name={value.to} subject={value.subject} message={value.message} time={value.date} read={!value.read}/><span></span></>
                 }
                 return null;
             })
