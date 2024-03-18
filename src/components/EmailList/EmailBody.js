@@ -27,11 +27,11 @@ const EmailBody = ({name,subject,message,time,id,read}) => {
       // Call the deleteData function with the ID of the data you want to delete
   return (<>
   
-      <Link to={id} style={{ textDecoration: 'none' }}>
-    <li className={classes.emailbody}>
+      <Link to={id} style={{ textDecoration: 'none' }} >
+    <div className={classes.emailbody}>
        <div className={classes.emailbody__left}  name='emailbody__left' data-testid="emailbody__left">
-            <CheckBoxOutlineBlankIcon/>
             {read && <div style={{ marginRight: '8px', color: 'blue' }}>•</div>}
+            <CheckBoxOutlineBlankIcon/>
             <StarBorderIcon/>
             <LabelIcon/>
             <h6>{name}</h6>
@@ -50,7 +50,7 @@ const EmailBody = ({name,subject,message,time,id,read}) => {
             }}
             />
         </div>
-    </li>
+    </div>
        </Link>
             </>
   )

@@ -2,3 +2,6 @@
     display: flex;
     flex-direction: column;
 }
+.emailist li{
+    text-decoration: none;
+}

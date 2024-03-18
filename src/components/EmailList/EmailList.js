@@ -16,7 +16,7 @@ const EmailList = () => {
 
     useEffect(()=>{
         async function sendMail(){
-    
+          console.log('hia')
             const response=await fetch('https://emailboxclient-default-rtdb.firebaseio.com/emails.json')
                if(!response.ok){
                  throw new Error('this one is at antoher level');
@@ -27,22 +27,22 @@ const EmailList = () => {
                 setBackendData(arrayOfObjects);
                 
            }
+
+           setInterval(() => {
+            sendMail().catch((err)=>{
+              console.log(err);
+            })
+           }, 2000);
           
-           sendMail().catch((err)=>{
-             console.log(err);
-           })
+          
     },[])
 
   return (
-    <ul className='emailist'>
+    <ul className='emailist'  style={{ listStyleType: 'none' }}>
         {
             BackanedData.map(({key,value})=>{ 
-              if(!value.read){
-                dispatch(unreadHandler())
-              }
-
-                if(value.from === 'sameer@gmail.com') {
-                    return <><EmailBody key={key} id={key} name={value.to} subject={value.subject} message={value.message} time={value.date} read={!value.read}/><span></span></>
+                if(value.to === 'yashoka51@gmail.com') {
+                    return <li key={key}><EmailBody  id={key} name={value.to} subject={value.subject} message={value.message} time={value.date} read={!value.read}/></li>
                 }
                 return null;
             })
