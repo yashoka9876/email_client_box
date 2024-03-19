@@ -20,8 +20,8 @@ const mailSlice = createSlice({
     toggleHandler: (state) => {
       state.toggle=!state.toggle;
   },
-  unreadHandler:(state)=>{
-    state.unread=state.unread+1;
+  unreadHandler:(state,actions)=>{
+    state.unread=actions.payload;
     // localStorage.setItem('unread',state.unread);
   }
   },

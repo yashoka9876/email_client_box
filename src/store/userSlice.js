@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const initialState = {
-  value:{email:'yashoka@gmail.com'}
+  value:null
 };
 
 const userSlice = createSlice({

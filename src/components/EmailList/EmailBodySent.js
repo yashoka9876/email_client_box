@@ -1,41 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import LabelIcon from '@mui/icons-material/Label';
 import classes from './EmailBody.module.css'
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-const EmailBodyIndex = ({name,subject,message,time}) => {
-    const [BackanedData,setBackendData]=useState([]);
-   const From=useSelector(state=>state.user.value);
-   console.log(From);
-
+import { useFetch } from '../../custom-hooks/fetch-hooks';
+const EmailBodyIndex = () => {
+  
    
+    const {data:BackanedData,loading,error}=useFetch('https://emailboxclient-default-rtdb.firebaseio.com/emails.json')
 
-    useEffect(()=>{
-        async function sendMail(){
+    const auth=JSON.parse(localStorage.getItem('auth')).email;
     
-            const response=await fetch('https://emailboxclient-default-rtdb.firebaseio.com/emails.json')
-               if(!response.ok){
-                 throw new Error('this one is at antoher level');
-               }
-               const data=await response.json();
-               const arrayOfObjects = Object.entries(data).map(([key, value]) => ({ key, value }));
 
-                setBackendData(arrayOfObjects);
-                
-           }
-          
-           sendMail().catch((err)=>{
-             console.log(err);
-           })
-    },[])
+    if(loading){
+        return <h1>Loading.......</h1>
+      }
+      if(error){
+        return <h2>erro has occure brother</h2>
+      }
 
   return (
     <div className='emailist'>
         {
             BackanedData.map(({key,value})=>{ 
-                if(value.from === 'yashoka@gmail.com') {
+                if(value.from === auth) {
                     return <Link to={value.subject}>
                         <div className={classes.emailbody}>
                         <div className={classes.emailbody__left}>

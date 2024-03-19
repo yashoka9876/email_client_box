@@ -3,44 +3,42 @@ import './EmailList.module.css'
 import EmailBody from './EmailBody'
 import { useDispatch, useSelector } from 'react-redux'
 import { unreadHandler } from '../../store/mailSlice';
+import { useFetch } from '../../custom-hooks/fetch-hooks';
 
 
 const EmailList = () => {
   let Unread=0;
-   const [BackanedData,setBackendData]=useState([]);
+  //  const [BackanedData,setBackendData]=useState([]);
    const From=useSelector(state=>state.user.value);
    const dispatch=useDispatch();
-   console.log(From);
 
 
+    const {data,loading,error}=useFetch('https://emailboxclient-default-rtdb.firebaseio.com/emails.json')
 
-    useEffect(()=>{
-        async function sendMail(){
-          console.log('hia')
-            const response=await fetch('https://emailboxclient-default-rtdb.firebaseio.com/emails.json')
-               if(!response.ok){
-                 throw new Error('this one is at antoher level');
-               }
-               const data=await response.json();
-               const arrayOfObjects = Object.entries(data).map(([key, value]) => ({ key, value }));
 
-                setBackendData(arrayOfObjects);
-                
-           }
+    // useEffect(()=>{
+    //   let count=0
+    //   BackanedData.map(({key,value})=>{ 
+    //     if(!value.read && value.to==='yashoka51@gmail.com'){
+    //       console.log("count hia")
+    //       count=count+1;
+    //     }
+       
+    // })
 
-           setInterval(() => {
-            sendMail().catch((err)=>{
-              console.log(err);
-            })
-           }, 2000);
-          
-          
-    },[])
+    // },[BackanedData])
+    console.log(data);
+    if(loading){
+      return <h1>Loading.......</h1>
+    }
+    if(error){
+      return <h2>erro has occure brother</h2>
+    }
 
   return (
     <ul className='emailist'  style={{ listStyleType: 'none' }}>
-        {
-            BackanedData.map(({key,value})=>{ 
+        {data &&
+            data.map(({key,value})=>{ 
                 if(value.to === 'yashoka51@gmail.com') {
                     return <li key={key}><EmailBody  id={key} name={value.to} subject={value.subject} message={value.message} time={value.date} read={!value.read}/></li>
                 }

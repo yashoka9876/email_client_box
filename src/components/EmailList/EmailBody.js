@@ -6,6 +6,7 @@ import classes from './EmailBody.module.css'
 import { Link } from 'react-router-dom';
 import DeleteIcon from '@mui/icons-material/Delete';
 const EmailBody = ({name,subject,message,time,id,read}) => {
+  
     const deleteData = async (id) => {
         window.alert("kyo pendi dhak chempian")
         try {

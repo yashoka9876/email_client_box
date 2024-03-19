@@ -27,7 +27,8 @@ const Compose = () => {
     const currentTime = new Date();
     const hours = currentTime.getHours();
     const minutes = currentTime.getMinutes();
-    const fromData=useSelector(state=>state.user.value)
+    // const fromData=useSelector(state=>state.user.value)
+    const fromData=JSON.parse(localStorage.getItem('auth')).email
 
     
     //console.log(fromData)
@@ -42,7 +43,7 @@ const Compose = () => {
             subject:subject.current.value,
             message:message.current.value,
             date:currTime,
-            from:fromData.email,
+            from:fromData,
             read:false
         }
 
@@ -61,6 +62,7 @@ const Compose = () => {
                }
                const data=await response.json();
                console.log(data);
+               window.location.reload();
            }
 
            
