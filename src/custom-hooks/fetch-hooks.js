@@ -7,11 +7,14 @@ export function useFetch(url){
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     console.log('three')
-    const auth=JSON.parse(localStorage.getItem('auth')).email
+    let auth=JSON.parse(localStorage.getItem('auth'))
+    if(auth){
+        auth=auth.email
+    }
     console.log(auth);
 
     const dispatch=useDispatch();
-    
+
     useEffect(()=>{
             async function sendMail(){
                 const response=await fetch(url)

@@ -15,9 +15,9 @@ import CreateIcon from '@mui/icons-material/Create';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { IconButton } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { closeSendMessage } from '../../store/mailSlice';
-import { Link } from 'react-router-dom';
+
 
 const Compose = () => {
     const dispatch=useDispatch();
@@ -28,7 +28,10 @@ const Compose = () => {
     const hours = currentTime.getHours();
     const minutes = currentTime.getMinutes();
     // const fromData=useSelector(state=>state.user.value)
-    const fromData=JSON.parse(localStorage.getItem('auth')).email
+    let fromData=JSON.parse(localStorage.getItem('auth'))
+    if(fromData){
+        fromData=fromData.email;
+    }
 
     
     //console.log(fromData)

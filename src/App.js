@@ -24,7 +24,7 @@ const router = createBrowserRouter([
     path: "/auth",
     element: <Auth />,
   },
-  // { path: "/compose", element: <Compose /> },
+  { path: "/compose", element: <Compose /> },
 ]);
 
 function App() {

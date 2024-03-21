@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+let runonce=true;
 const EventDetailPage = () => {
   const { Id } = useParams(); // Extract event ID from URL params
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [runOnce,setRunOnce]=useState(false)
 
   const updateItem=async()=>{
     try {
@@ -50,8 +50,9 @@ const EventDetailPage = () => {
 
   useEffect(() => {
    
-        setRunOnce(true);
-        updateItem();
+        
+     updateItem();
+        runonce=false
     
 
     getDataItem();
@@ -71,11 +72,15 @@ const EventDetailPage = () => {
 
   return (
     <div>
-      <h2>{event.subject}</h2>
-      <p>Date: {event.date}</p>
-      <p>message:{event.message}</p>
-      <p>to: {event.to}</p>
-      {/* Add more event details here */}
+      <h6 data-testId={'hello'}>From: {`<${event.from}>`}</h6>
+      <p>To:me</p>
+      <div className='d-flex justify-content-between '>
+        <p>subject:{event.subject}</p>
+        <p>Time: {event.date}</p>
+      </div>
+      <h2>{event.message}</h2>
+      
+     
     </div>
   );
 };

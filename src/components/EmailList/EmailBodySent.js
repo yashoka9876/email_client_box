@@ -25,7 +25,7 @@ const EmailBodyIndex = () => {
         {
             BackanedData.map(({key,value})=>{ 
                 if(value.from === auth) {
-                    return <Link to={value.subject}>
+                    return <Link to={key}>
                         <div className={classes.emailbody}>
                         <div className={classes.emailbody__left}>
                             <CheckBoxOutlineBlankIcon/>

@@ -12,6 +12,11 @@ const EmailList = () => {
    const From=useSelector(state=>state.user.value);
    const dispatch=useDispatch();
 
+   let auth=JSON.parse(localStorage.getItem('auth'))
+   if(auth){
+       auth=auth.email
+   }
+
 
     const {data,loading,error}=useFetch('https://emailboxclient-default-rtdb.firebaseio.com/emails.json')
 
@@ -39,8 +44,8 @@ const EmailList = () => {
     <ul className='emailist'  style={{ listStyleType: 'none' }}>
         {data &&
             data.map(({key,value})=>{ 
-                if(value.to === 'yashoka51@gmail.com') {
-                    return <li key={key}><EmailBody  id={key} name={value.to} subject={value.subject} message={value.message} time={value.date} read={!value.read}/></li>
+                if(value.to === auth) {
+                    return <li key={key}><EmailBody  id={key} name={value.from} subject={value.subject} message={value.message} time={value.date} read={!value.read}/></li>
                 }
                 return null;
             })
